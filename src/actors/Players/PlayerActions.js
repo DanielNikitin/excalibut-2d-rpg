@@ -90,4 +90,19 @@ export class PlayerActions {
             }
         );
     }
+
+    // Toggle Opacity on and off a few times, setting flag `isPainFlashing` to true while it's happening
+    // We'll use `isPainFlashing` to make sure no other damage is accepted during this grace period
+    async flashSeries() {
+        const { actor } = this;
+        actor.isPainFlashing = true;
+        const PAIN_FLASH_SPEED = 100;
+        for (let i = 0; i <= 4; i++) {
+        actor.graphics.opacity = 0;
+        await actor.actions.delay(PAIN_FLASH_SPEED).toPromise();
+        actor.graphics.opacity = 1;
+        await actor.actions.delay(PAIN_FLASH_SPEED).toPromise();
+        }
+        actor.isPainFlashing = false;
+    }
 }
