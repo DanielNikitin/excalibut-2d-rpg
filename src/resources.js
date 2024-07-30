@@ -12,10 +12,8 @@ const Images = {
   indoorImage: new ex.ImageSource("/maps/indoor.png"),
 
   // Weapons
-            // SWORD
   swordSheetImage: new ex.ImageSource("/sprites/sword-sheet.png"),
-              // SPEAR
-  spearSheetImage: new ex.ImageSource("/sprites/spear-sheet.png"),
+  arrowSheetImage: new ex.ImageSource("/sprites/arrow-sheet.png"),
 
   // Effects
   explosionSheetImage: new ex.ImageSource("/sprites/explosion-sheet.png"),

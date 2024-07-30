@@ -1,5 +1,5 @@
 import * as ex from "excalibur";
-import { Images } from "../resources";
+import { Images } from "../resources.js";
 import {
   DOWN,
   LEFT,
@@ -10,9 +10,8 @@ import {
   SWORD2,
   TAG_PLAYER_WEAPON,
   UP,
-} from "../constants";
-
-import { DrawShapeHelper } from "../classes/DrawShapeHelper";
+} from "../constants.js";
+import {DrawShapeHelper} from "../classes/DrawShapeHelper.js";
 
 const swordSpriteSheet = ex.SpriteSheet.fromImageSource({
   image: Images.swordSheetImage,
@@ -56,7 +55,6 @@ export class Sword extends ex.Actor {
             [1],
             100
         ),
-        // квадрат спрайт щита [2]
         [SWORD_SWING_3]: ex.Animation.fromSpriteSheet(
             swordSpriteSheet,
             [2],
@@ -137,9 +135,9 @@ export class Sword extends ex.Actor {
     }
   }
 
-//  onInitialize() {
-//    new DrawShapeHelper(this);
-//  }
+  onInitialize(_engine) {
+    //new DrawShapeHelper(this); // TODO - come back to this
+  }
 
   onDamagedSomething() {
     this.isUsed = true;

@@ -1,5 +1,5 @@
 import * as ex from "excalibur";
-import { SCALE } from "../constants";
+import { SCALE } from "../constants.js";
 
 export class Player_CameraStrategy {
   constructor(target, map) {

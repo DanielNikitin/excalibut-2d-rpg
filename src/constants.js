@@ -14,13 +14,14 @@ export const RIGHT = "RIGHT";
 export const UP = "UP";
 export const DOWN = "DOWN";
 
+export const IDLE = "IDLE";
 export const WALK = "WALK";
 export const SWORD1 = "SWORD1";
 export const SWORD2 = "SWORD2";
 export const PAIN = "PAIN";
 
 export const SWORDACTION = "SWORDACTION";
-export const SPEARACTION = "SPEARACTION";
+export const ARROWACTION = "ARROWACTION";
 
 export const EVENT_SEND_PLAYER_UPDATE = "EVENT_SEND_PLAYER_UPDATE";
 export const EVENT_SEND_MONSTER_UPDATE = "EVENT_SEND_MONSTER_UPDATE";

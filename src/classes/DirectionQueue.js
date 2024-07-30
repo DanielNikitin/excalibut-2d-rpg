@@ -1,5 +1,5 @@
 import * as ex from "excalibur";
-import {DOWN, UP, LEFT, RIGHT} from "../constants";
+import {DOWN, UP, LEFT, RIGHT} from "../constants.js";
 
 export class DirectionQueue {
   constructor() {

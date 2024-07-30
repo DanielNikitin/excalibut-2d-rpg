@@ -1,7 +1,7 @@
 import * as ex from "excalibur";
-import { Images } from "../resources";
-import { ANCHOR_TOP_LEFT, SCALE_2x } from "../constants";
-import { Floor } from "../actors/Floor";
+import {Images} from "../resources.js";
+import {ANCHOR_TOP_LEFT, SCALE_2x} from "../constants.js";
+import {Floor} from "../actors/Floor.js";
 
 const mapSprite = Images.indoorImage.toSprite();
 

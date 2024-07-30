@@ -1,6 +1,5 @@
 import * as ex from "excalibur";
-import { Images } from "./resources";
-
+import { Images } from "./resources.js";
 import {
   DOWN,
   LEFT,
@@ -10,7 +9,8 @@ import {
   SWORD2,
   UP,
   WALK,
-} from "../src/constants";
+  IDLE,
+} from "./constants.js";
 
 const WALK_ANIM_SPEED = 150;
 const charSpritesheetGridConfig = {
@@ -46,24 +46,28 @@ const SPRITESHEET_MAP = {
 
 const ANIMATION_CONFIGS = {
   [DOWN]: {
+    IDLE: [[1, 1]],
     WALK: [[0, 1], WALK_ANIM_SPEED],
     SWORD1: [[2], WALK_ANIM_SPEED],
     SWORD2: [[3], WALK_ANIM_SPEED],
     PAIN: [[4], WALK_ANIM_SPEED],
   },
   [UP]: {
+    IDLE: [[10, 10]],
     WALK: [[10, 11], WALK_ANIM_SPEED],
     SWORD1: [[12], WALK_ANIM_SPEED],
     SWORD2: [[13], WALK_ANIM_SPEED],
     PAIN: [[14], WALK_ANIM_SPEED],
   },
   [LEFT]: {
+    IDLE: [[20, 20]],
     WALK: [[20, 21], WALK_ANIM_SPEED],
     SWORD1: [[22], WALK_ANIM_SPEED],
     SWORD2: [[23], WALK_ANIM_SPEED],
     PAIN: [[24], WALK_ANIM_SPEED],
   },
   [RIGHT]: {
+    IDLE: [[30, 30]],
     WALK: [[30, 31], WALK_ANIM_SPEED],
     SWORD1: [[32], WALK_ANIM_SPEED],
     SWORD2: [[33], WALK_ANIM_SPEED],
@@ -76,16 +80,75 @@ export const generateCharacterAnimations = (spriteSheetKey) => {
   let payload = {};
   [UP, DOWN, LEFT, RIGHT].forEach((dir) => {
     payload[dir] = {};
-    [WALK, SWORD1, SWORD2, PAIN].forEach((pose) => {
+    [IDLE, WALK, SWORD1, SWORD2, PAIN].forEach((pose) => {
       const [frames, speed] = ANIMATION_CONFIGS[dir][pose];
       payload[dir][pose] = ex.Animation.fromSpriteSheet(
         sheet,
         [...frames],
         speed
       );
-
-      console.log(payload[dir][pose])
     });
   });
   return payload;
+};
+
+const monsterSpriteSheet = ex.SpriteSheet.fromImageSource({
+  image: Images.monsterSheetImage,
+  grid: {
+    columns: 4,
+    rows: 4,
+    spriteWidth: 16,
+    spriteHeight: 16,
+  },
+});
+
+const MONSTER_ANIM_SPEED = 300;
+
+export const generateMonsterAnimations = () => {
+  return {
+    [WALK]: {
+      [DOWN]: ex.Animation.fromSpriteSheet(
+          monsterSpriteSheet,
+          [0, 1],
+          MONSTER_ANIM_SPEED
+      ),
+      [UP]: ex.Animation.fromSpriteSheet(
+          monsterSpriteSheet,
+          [4, 5],
+          MONSTER_ANIM_SPEED
+      ),
+      [LEFT]: ex.Animation.fromSpriteSheet(
+          monsterSpriteSheet,
+          [8, 9],
+          MONSTER_ANIM_SPEED
+      ),
+      [RIGHT]: ex.Animation.fromSpriteSheet(
+          monsterSpriteSheet,
+          [12, 13],
+          MONSTER_ANIM_SPEED
+      ),
+    },
+    [PAIN]: {
+      [DOWN]: ex.Animation.fromSpriteSheet(
+          monsterSpriteSheet,
+          [2, 3],
+          MONSTER_ANIM_SPEED
+      ),
+      [UP]: ex.Animation.fromSpriteSheet(
+          monsterSpriteSheet,
+          [6, 7],
+          MONSTER_ANIM_SPEED
+      ),
+      [LEFT]: ex.Animation.fromSpriteSheet(
+          monsterSpriteSheet,
+          [10, 11],
+          MONSTER_ANIM_SPEED
+      ),
+      [RIGHT]: ex.Animation.fromSpriteSheet(
+          monsterSpriteSheet,
+          [14, 15],
+          MONSTER_ANIM_SPEED
+      ),
+    },
+  };
 };
